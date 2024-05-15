@@ -13,14 +13,14 @@ class GeminiChat:
             raise ValueError("Google API key not found in environment variables.")
 
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
 
-    def send_message(self, prompt, temp=0.2, top_p=1.0):
+    def send_message(self, prompt, temperature=0.9, top_p=1.0):
         """
         Send a message to the Gemini model with specified temperature and top probability.
         """
         try:
-            generation_config = genai.types.GenerationConfig(temperature=temp, top_p=top_p)
+            generation_config = genai.types.GenerationConfig(temperature=temperature, top_p=top_p)
             response = self.model.generate_content(prompt, generation_config=generation_config)
             return response.text.strip()
         except Exception as e:
@@ -30,7 +30,7 @@ class GeminiChat:
 # Example usage
 if __name__ == "__main__":
     gemini_chat = GeminiChat()
-    response = gemini_chat.send_message("Hello, Gemini! How are you today?", temp=0.7, top_p=0.9)
+    response = gemini_chat.send_message("Hello, Gemini! How are you today?", temperature=0.7, top_p=1.0)
     if response:
         print("Gemini's response:", response)
     else:
