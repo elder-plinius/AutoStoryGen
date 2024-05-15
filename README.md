@@ -1,1 +1,1 @@
-Autonomous story generator
+Autonomous story generator with streamlit interface
