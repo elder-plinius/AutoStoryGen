@@ -1,1 +1,1 @@
-Template for AI Projects
+Autonomous story generator.
